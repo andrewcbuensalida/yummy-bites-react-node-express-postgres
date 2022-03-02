@@ -7,13 +7,34 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/api/v1/", async (req, res) => {
-    console.log(`get hit`)
-    
-	const result = await db.query(`SELECT * FROM customer ORDER BY "lastName"`);
-    console.log(result.rows)
-    const withConvertIdToNumber = 
-    
-	res.status(200).json({ status: "success", data: result.rows });
+	console.log(`get hit`);
+	try {
+		const customers = await db.query(
+			`SELECT * FROM customer ORDER BY "lastName"`
+		);
+		const products = await db.query(
+			`SELECT * FROM product ORDER BY "name"`
+		);
+
+		const orders = await db.query(
+			`SELECT * FROM order ORDER BY "deliveryTime"`
+		);
+
+		res.status(200).json({
+			ok: true,
+			data: {
+				customers: customers.rows,
+				products: products.rows,
+				orders: orders.rows,
+			},
+		});
+	} catch (error) {
+		console.log('this is error',error);
+		res.status(400).json({
+			ok: false,
+			data: {},
+		});
+	}
 });
 
 app.post("/api/v1/", async (req, res) => {

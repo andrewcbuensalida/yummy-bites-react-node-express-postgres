@@ -10,24 +10,28 @@ function Admin() {
 	const [customers, setCustomers] = useState<ICustomer[]>([]);
 	const [products, setProducts] = useState<IProduct[]>([]);
 	const [orders, setOrders] = useState<IOrder[]>([]);
-	console.log(`this is customers`);
 
-	console.log(customers);
-
-    //fetch all data from database
+	//fetch all data from database
 	useEffect(() => {
 		try {
-			const getCustomers = async (URL: string) => {
-				const customersRaw = await fetch(URL);
-				const customers = await customersRaw.json();
-				setCustomers(customers.data);
-			};
-			getCustomers(URL);
-		} catch (error) {}
-		setProducts(mockData.products);
-		setOrders(mockData.orders);
-	}, [products, orders]);
+			const getData = async (URL: string) => {
+				const responseRaw = await fetch(URL);
+				const { ok, data } = await responseRaw.json();
 
+                // maybe should separate these calls so all wont fail if one fails
+				if (ok) {                   
+					setCustomers(data.customers);
+					setProducts(data.products);
+					setOrders(data.orders);
+				}
+
+			};
+			getData(URL);
+		} catch (error) {
+			console.log(error);
+		}
+	}, []);
+    
 	return (
 		<div>
 			Admin
