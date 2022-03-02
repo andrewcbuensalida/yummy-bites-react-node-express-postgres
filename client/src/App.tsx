@@ -6,7 +6,7 @@ import Orders from "./routes/Orders";
 import Products from "./routes/Products";
 import Customers from "./routes/Customers";
 
-function App() {
+function App() {  
 	return (
 		<div className="App">
 			<header>Yummy Bites</header>

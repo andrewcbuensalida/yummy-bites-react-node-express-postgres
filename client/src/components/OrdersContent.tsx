@@ -7,19 +7,25 @@ import { IItemWithProduct, IOrderWithProductsAndCustomer } from "../interfaces/I
 function OrdersContent({ oneContent }: {oneContent:IOrderWithProductsAndCustomer}) {    
 	return (
 		<div className="OrdersContent_container">
-			<div>Pending? {oneContent.isPending ? "Yes" : "No"}</div>
-			<div>Paid? {oneContent.isPaid ? "Yes" : "No"}</div>
 			<div>
-				Date Ordered:{" "}
-				{format(oneContent.dateOrdered, "MMM dd, ''yy h:mm aa")}
+				<strong>Pending?</strong> {oneContent.isPending ? "Yes" : "No"}
 			</div>
 			<div>
-				Delivery Time:{" "}
-				{format(oneContent.deliveryTime, "MMM dd, ''yy h:mm aa")}
+				<strong>Paid?</strong> {oneContent.isPaid ? "Yes" : "No"}
 			</div>
-			<div>Delivery Address: {oneContent.deliveryAddress}</div>
+			<div>
+				<strong>Date Ordered:</strong>{" "}
+				{format(oneContent.dateOrdered, "MMM dd, h:mm aa")}
+			</div>
+			<div>
+				<strong>Delivery Time:</strong>{" "}
+				{format(oneContent.deliveryTime, "MMM dd, h:mm aa")}
+			</div>
+			<div>
+				<strong>Delivery Address:</strong> {oneContent.deliveryAddress}
+			</div>
 			<ul>
-				Items:
+				<strong>Items:</strong>
 				{oneContent.items.map((item: IItemWithProduct) => (
 					<li key={item.productId} className="OrdersContent_item">
 						{item.quantity + " "}

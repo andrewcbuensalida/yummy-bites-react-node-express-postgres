@@ -17,7 +17,7 @@ app.get("/api/v1/", async (req, res) => {
 		);
 
 		const orders = await db.query(
-			`SELECT * FROM order ORDER BY "deliveryTime"`
+			`SELECT * FROM "order" ORDER BY "deliveryTime"`
 		);
 
 		res.status(200).json({
@@ -37,7 +37,7 @@ app.get("/api/v1/", async (req, res) => {
 	}
 });
 
-app.post("/api/v1/", async (req, res) => {
+app.post("/api/v1/customer", async (req, res) => {
 	try {
 		const result = await db.query(
 			"INSERT INTO customer (firstName,lastName,homeAddress,cellPhone) VALUES ($1,$2,$3,$4) RETURNING *",

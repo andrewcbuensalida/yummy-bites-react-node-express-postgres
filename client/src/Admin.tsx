@@ -18,20 +18,35 @@ function Admin() {
 				const responseRaw = await fetch(URL);
 				const { ok, data } = await responseRaw.json();
 
-                // maybe should separate these calls so all wont fail if one fails
-				if (ok) {                   
+				console.log(`This is data.orders[0]`);
+				console.log(data.orders[0].deliveryTime);
+
+				console.log(`This is new Date`);
+				console.log(new Date(data.orders[0].deliveryTime));
+
+				const ordersWithDateObject = data.orders.map(
+					(order: IOrder) => {
+						return {
+							...order,
+							deliveryTime: new Date(order.deliveryTime),
+							dateOrdered: new Date(order.dateOrdered),
+						};
+					}
+				);
+
+				// maybe should separate these calls so all wont fail if one fails
+				if (ok) {
 					setCustomers(data.customers);
 					setProducts(data.products);
-					setOrders(data.orders);
+					setOrders(ordersWithDateObject);
 				}
-
 			};
 			getData(URL);
 		} catch (error) {
 			console.log(error);
 		}
 	}, []);
-    
+
 	return (
 		<div>
 			Admin

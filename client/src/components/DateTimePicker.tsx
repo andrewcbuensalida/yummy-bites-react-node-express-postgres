@@ -10,8 +10,6 @@ interface Props {
 	setDate: (date: Date | null) => void;
 }
 const BasicDateTimePicker: React.FC<Props> = ({ date, setDate }) => {
-	const [value, setValue] = React.useState<Date | null>(new Date());
-
 	return (
 		<LocalizationProvider dateAdapter={AdapterDateFns}>
 			<DateTimePicker
