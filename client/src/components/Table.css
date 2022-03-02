@@ -1,0 +1,26 @@
+#Table_table {
+	margin: 0 auto;
+}
+.Table_oneContent_tr:nth-child(even) {
+	background-color: rgb(223, 223, 223);
+}
+
+.Table_oneContent_header {
+	display: flex;
+	justify-content: space-between;
+	text-align: left;
+}
+.Table_oneContent_name {
+	flex: 1;
+}
+
+.Table_oneContent_edit_delete button:first-child {
+	background-color: rgb(255, 188, 88);
+}
+
+.Table_oneContent_edit_delete button:last-child {
+	background-color: rgb(255, 88, 88);
+}
+/* .Table_oneContent_inc_dec *{
+    font-size: 2rem;
+} */
