@@ -34,9 +34,9 @@ function Table(props: {
 										? oneContent.firstName +
 										  " " +
 										  oneContent.lastName
-										: oneContent.customer.firstName +
+										: oneContent.customer?.firstName +
 										  " " +
-										  oneContent.customer.lastName}
+										  oneContent.customer?.lastName}
 								</strong>
 							</div>
 							{props.type === "addOrderProducts" ? (

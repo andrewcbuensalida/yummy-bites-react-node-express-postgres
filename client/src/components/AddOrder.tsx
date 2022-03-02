@@ -77,8 +77,8 @@ function AddOrder({
 		}
 	}
 	async function submitOrder() {
-        console.log(`helo`)
-        // const response = await fetch()
+        
+        
         handleClose()
     }
 	return (
