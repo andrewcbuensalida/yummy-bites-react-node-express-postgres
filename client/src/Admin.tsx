@@ -3,8 +3,7 @@ import { Outlet } from "react-router-dom";
 import mockData from "./mockData";
 import AdminNavbar from "./components/AdminNavbar";
 import { ICustomer, IProduct, IOrder } from "./interfaces/Interfaces";
-
-const URL = "http://localhost:3500/api/v1";
+import BASE_URL from "./URL";
 
 function Admin() {
 	const [customers, setCustomers] = useState<ICustomer[]>([]);
@@ -41,7 +40,7 @@ function Admin() {
 					setOrders(ordersWithDateObject);
 				}
 			};
-			getData(URL);
+			getData(BASE_URL);
 		} catch (error) {
 			console.log(error);
 		}
