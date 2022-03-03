@@ -5,6 +5,8 @@ import AdminNavbar from "./components/AdminNavbar";
 import { ICustomer, IProduct, IOrder } from "./interfaces/Interfaces";
 import BASE_URL from "./URL";
 
+// const BASE_URL = ''
+
 function Admin() {
 	const [customers, setCustomers] = useState<ICustomer[]>([]);
 	const [products, setProducts] = useState<IProduct[]>([]);
